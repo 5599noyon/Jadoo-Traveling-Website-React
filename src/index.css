@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@utility container {
+  padding-inline: 1rem ;
+  margin-inline: auto;
+}
+
+@layer base {
+  body {
+    background: #FFFFFF;
+  }
+}
+
+@theme {
+  
+  /* COLOUR */
+  --color-p: #212832;
+  --color-h1: #181E4B;
+  --color-text-crl: #5E6282;
+  --color-h3: #14183E;
+  --color-black:#080809;
+  --color-information-button: linear-gradient(#FF946D, #FF7D68);
+  /* COLOUR */
+
+  /* CONTAINER */
+  --breakpoint-*: initial;   /*[ Container wide ÷ 16 = rem ]  [ rem × 16 = px ] */
+  --breakpoint-sm: 40rem;    /*[ Container wide ÷ 16 = rem ]  [ rem × 16 = px ] */
+  --breakpoint-md: 48rem;    /*[ Container wide ÷ 16 = rem ]  [ rem × 16 = px ] */
+  --breakpoint-lg: 64rem;    /*[ Container wide ÷ 16 = rem ]  [ rem × 16 = px ] */
+  --breakpoint-xl: 74.5rem;  /*[ Container wide ÷ 16 = rem ]  [ rem × 16 = px ] */
+  --breakpoint-2xl: 96rem;   /*[ Container wide ÷ 16 = rem ]  [ rem × 16 = px ] */
+   /* CONTAINER */
+
+   /* SHADOW */
+    --shadow-1: 0px 20px 35px  hsla(41, 99%, 47%, 0.189);
+  --shadow-2: 0px 15px 30px rgba(223, 105, 81, 0.304) ;
+  --shadow-3: 0px 2px 10px #0000001f ;
+  --shadow-serviceCard: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+  --shadow-destinationCard: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+ --shadow-testimonialCard: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+ --shadow-companyCard: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+
+   /* SHADOW */
+
+   /* FONT FAMILY */
+   --poppins:"Poppins", sans-serif;
+   --open-sans:"Open Sans", sans-serif;
+   --volkhov:"Volkhov", serif;
+   --inter:"Inter", sans-serif;
+   /* FONT FAMILY */
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family:  "Volkhov", serif;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+}
+
+button {
+  font-family: "Open Sans", sans-serif;
+}
+
+
+.airbg {
+     background: url(../src/assets/airplanebg.jpg) ;
+     overflow: hidden;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+}
+
+.travel_h1::after {
+  background: url(../src/assets/lineicon.svg);
+  content: "";
+  position: absolute;
+  width: 385px;
+  height: 12px;
+  z-index: -1;
+  left: -35px;
+  top: 80px;
+}
+
+.stickyNavbar {
+  background: white;
+  z-index: 100;
+  padding: 10px 0;
+  box-shadow: 0 4.4px 12px -1px rgba(19, 16, 34, 0.06),
+          0 2px 6px -1px rgba(19, 16, 34, 0.05) !important;
+}
+
+.information {
+  background: url(../src/assets/information1.svg);
+  
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: cover;
+     padding: 80px 156px;
+}
+
+.destination_image {
+  transform: translate(1472px,150px);
+}
+
+.informationAro {
+  transform: translate(-86px,-10px);
+}
