@@ -39,7 +39,7 @@ const BannerServiceCard = ({service}) => {
 
        <div className=" flex flex-col items-center text-center translate-y-[-70px] " >
          <div>
-        <img className=" h-[153.33px] w-[166.87px] " src={services_flight} alt="weather" />
+        <img className=" h-[153.33px] w-[166.87px] translate-y-[28px] " src={services_flight} alt="weather" />
         </div>
         <div>
           <h3 className=" font-open-sans font-semibold text-[20px] pt-7.5 pb-4 " > Best Flights </h3>

@@ -112,4 +112,5 @@ button {
 
 .informationAro {
   transform: translate(-86px,-10px);
+  z-index: -1;
 }

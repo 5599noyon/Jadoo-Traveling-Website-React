@@ -1,4 +1,5 @@
 import BgGirlImg from "../assets/BgGirlImg.png"
+import AroPlain from "../assets/AroPlainIcon.svg"
 import GirlIcon from "../assets/girlicon.svg"
 import Polyicon from "../assets/Polyicon.svg"
 import Button from "../Component/Button"
@@ -32,8 +33,12 @@ function Banner() {
                     </div>
                </div>
 
-               <div>
+               <div className=" relative z-20 " >
                     <img src={GirlIcon} alt={GirlIcon} />
+                   <div className="  " >
+                     <img className=" absolute top-0 right-0 translate-x-[-460px] translate-y-[50px] " src={AroPlain} alt="icon" />
+                    <img className=" absolute top-0 right-0 translate-x-[20px] translate-y-[100px] -z-10 " src={AroPlain} alt="icon" />
+                   </div>
                </div>
 
           </div>

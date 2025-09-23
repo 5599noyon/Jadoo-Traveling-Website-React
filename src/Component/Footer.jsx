@@ -4,7 +4,7 @@ import { FooterIcon } from "../ImportImages/ImportImages"
 const Footer = () => {
   return (
     <>
-      <footer className="pt-[60px] pb-[20px] bg-[#EFF2F1] ">
+      <footer className="pt-[60px] pb-[20px] bg-[#eff2f14e] shadow-companyCard ">
         <div className="container">
 
           <div className="footer_container footer sm:footer-horizontal  text-base-content p-10 ">

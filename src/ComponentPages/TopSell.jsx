@@ -47,11 +47,11 @@ const TopSell = () => {
                         </div>
 
                         {/* Card 3 */}
-                        <div className="destination_card relative z-[1] cursor-pointer h-[457px] hover:scale-110 overflow-hidden shadow-destinationCard transition-all ease-linear duration-200 rounded-[36px] flex flex-col">
+                        <div className="destination_card relative z-[1] cursor-pointer h-[457px] hover:scale-110 overflow-hidden shadow-destinationCard transition-all ease-linear duration-200 rounded-[36px] flex flex-col bg-white ">
                             <div className=" h-[320px] overflow-hidden mb-7">
                             <img className="w-full h-full object-cover" src={TopEurope} alt="Full Europe"/>
                             </div>
-                            <div className="destination_text  bg-white px-5 pb-7 flex-1">
+                            <div className="destination_text z-1  px-5 pb-7 flex-1">
                                 <div className="flex items-start justify-between mb-3">
                                     <h4 className="text-[20px] text-heading font-semibold font-opensans">Full Europe</h4>
                                     <p className="text-paragraph text-base font-poppins">$40k</p>

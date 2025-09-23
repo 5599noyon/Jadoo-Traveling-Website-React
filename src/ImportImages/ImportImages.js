@@ -20,4 +20,4 @@ import Company5 from "../assets/company-5.svg"
 import InformationAro from "../assets/information_aro.svg"
 import FooterIcon from "../assets/footer_icon.svg"
 
-export {services_weather, services_flight, services_events, service_customization, service_dot , TopRome, TopLondon, TopEurope, TopEuropeBg , TopAros, Next1, Next2, Next3, Nexttrip, Company1, Company2, Company3, Company4, Company5, InformationAro, FooterIcon }
+export {services_weather, services_flight, services_events, service_customization, service_dot , TopRome, TopLondon, TopEurope, TopEuropeBg , TopAros, Next1, Next2, Next3, Nexttrip, Company1, Company2, Company3, Company4, Company5, InformationAro, FooterIcon,  }
