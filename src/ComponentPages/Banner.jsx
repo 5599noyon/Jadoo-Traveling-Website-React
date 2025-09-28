@@ -33,7 +33,7 @@ function Banner() {
                     </div>
                </div>
 
-               <div className=" relative z-20 " >
+               <div className=" relative z-10 " >
                     <img src={GirlIcon} alt={GirlIcon} />
                    <div className="  " >
                      <img className=" absolute top-0 right-0 translate-x-[-460px] translate-y-[50px] " src={AroPlain} alt="icon" />

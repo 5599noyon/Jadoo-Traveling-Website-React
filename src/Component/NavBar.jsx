@@ -2,6 +2,9 @@ import { Link, NavLink } from "react-router"
 import MainIcon from "../assets/MainIcon.svg"
 import Button from "./Button"
 import { useRef } from "react"
+import SettingsDropdown from "../ComponentPages/SettingsDropdown"
+import TheamButton from "../ComponentPages/TheamButton"
+import NavSearch from "../ComponentPages/NavSearch"
 
 const NavBar = () => {
   const navbar = useRef(null)
@@ -9,7 +12,7 @@ const NavBar = () => {
   const NavStyle = ({ isActive, isPending, isTransitioning }) =>
     [
       isPending ? "pending" : "",
-      isActive ? " text-[17px] text-black bg-[#59B1E6] leading-10 font-semibold shadow-companyCard " : " text-[17px] text-p leading-10 font-semibold ",
+      isActive ? " text-[17px] text-red-600 border-[1px] border-red-600 pt-[2px] pb-[2px] leading-10 font-semibold shadow-companyCard " : " text-[17px] text-p leading-10 font-semibold ",
       isTransitioning ? "transitioning" : "",
     ].join(" ")
   
@@ -26,7 +29,7 @@ const NavBar = () => {
   })
   
   return (
-    <nav className=" fixed w-full " ref={navbar} >
+    <nav className=" z-50 fixed w-full " ref={navbar} >
 
      <div className="navbar container pt-[35px] pb-[22px] ">
   <div className="navbar-start">
@@ -57,10 +60,18 @@ const NavBar = () => {
       <li> <NavLink className={NavStyle} to={"/bookings"} >Bookings</NavLink> </li>
     </ul>
   </div>
-  <div className="navbar-end space-x-[52px] ">
-    <Button > <Link to={"/login"} > Login </Link>  </Button>
-    <Button btnStyle="secondery" > <Link to={"/signup"} > Sign up </Link>  </Button>
+
+  <div className="navbar-end flex items-center gap-[45px] ">
+    <div className=" active:outline-none ">
+      <NavSearch/>
+    </div>
+
+    <div className=" flex items-center gap-[20px] " >
+    <button> <TheamButton/> </button>
+    <button className=" z-40 " > <SettingsDropdown/> </button>
   </div>
+  </div>
+
   <select defaultValue="Pick a font " className="select-ghost ml-[42px] outline-none text-[17px] font-bold ">
   
   <option >EN</option>

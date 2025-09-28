@@ -2,14 +2,16 @@ import { Link } from "lucide-react"
 import { FooterIcon } from "../ImportImages/ImportImages"
 
 const Footer = () => {
+  const FooterYear = new Date().getFullYear()
+
   return (
     <>
-      <footer className="pt-[60px] pb-[20px] bg-[#eff2f14e] shadow-companyCard ">
+      <footer className="pt-[60px] pb-[30px] bg-[#eff2f14e]  shadow-companyCard ">
         <div className="container">
 
           <div className="footer_container footer sm:footer-horizontal  text-base-content p-10 ">
             <aside>
-              <img src={FooterIcon} alt="footer" />
+              <a href="/"><img src={FooterIcon} alt="footer" /></a>
               <p className="text-text-crl leading-[124.5%] text-[15px] mt-[19px] max-w-[255px]">
                 Book your trip in minute, get full
                 Control for much longer.
@@ -45,8 +47,8 @@ const Footer = () => {
             <div >
               <h4 className="text-[20px] font-medium text-text-crl leading-[124.5%] mt-[26px]"> Discover Our New App</h4>
              <div className="flex gap-4 mt-4">
-              <img  className="cursor-pointer" src="Google Play.png" alt="icon" />
-              <img className="cursor-pointer" src="Play Store.png" alt="icon" />
+              <a href="https://play.google.com/store/apps/details?id=com.expedia.bookings&hl=en"><img  className="cursor-pointer" src="Google Play.png" alt="icon" /></a>
+              <a href="https://appstoreconnect.apple.com/login"><img className="cursor-pointer" src="Play Store.png" alt="icon" /></a>
              </div>
 
             </div>
@@ -54,6 +56,11 @@ const Footer = () => {
             </div>
 
           </div>
+        </div>
+
+        <div className=" text-center " >
+          <p className=" leading-[124.5%] text-text-crl text-[18px]  pb-[5px] " >
+          Copyright {FooterYear}. All rights reserved@jadoo.com</p>
         </div>
       </footer>
     </>

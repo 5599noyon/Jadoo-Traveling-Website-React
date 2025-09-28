@@ -110,7 +110,62 @@ button {
   transform: translate(1472px,150px);
 }
 
+.destination_images {
+  transform: translate(-66px,150px);
+}
+
 .informationAro {
   transform: translate(-86px,-10px);
+}
+
+.login_bg {
+  transform: translate(-37px,-80px);
+}
+
+.login_main {
+    transform: translate(335px,30px);
+}
+
+.plain1 {
+  transform: translate(460px,-545px);
+}
+
+.plain2 {
+  transform: translate(50px,-580px);
   z-index: -1;
 }
+
+.splide__pagination--ttb {
+    flex-direction: row !important;
+    left: -2240px !important;
+    bottom: -163px !important;
+    gap: 10px !important;
+}
+
+.splide__arrows--ttb .splide__arrow {
+    left: 87% !important;
+    transform: translate(-50%) !important;
+}
+
+.splide__arrows--ttb .splide__arrow--prev {
+    top: 9em !important;
+}
+
+.splide__arrows--ttb .splide__arrow--next {
+    bottom: 9em !important;
+    top: auto !important;
+}
+
+.splide__arrow {
+    background: none !important;
+}
+
+.splide__pagination__page.is-active {
+    background: black !important;
+    background-color: black !important;
+}
+
+.input :focus :focus-within {
+        outline: none !important; 
+        outline-offset: 0px !important ;
+    }

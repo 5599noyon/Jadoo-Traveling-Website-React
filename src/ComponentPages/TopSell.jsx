@@ -1,4 +1,4 @@
-import { TopAros, TopEurope, TopEuropeBg, TopLondon, TopRome } from "../ImportImages/ImportImages";
+import { TopAros, TopEurope, TopEuropeBg, TopLondon, TopRome, TopRomeBg } from "../ImportImages/ImportImages";
 
 const TopSell = () => {
     return (
@@ -13,13 +13,13 @@ const TopSell = () => {
                     <div className="grid grid-cols-[315px_315px_315px]  justify-between gap-9">
 
                         {/* Card 1 */}
-                        <div className="destination_card cursor-pointer h-[457px] hover:scale-110 overflow-hidden shadow-destinationCard transition-all ease-linear duration-200 rounded-[36px] flex flex-col">
+                        <div className="destination_cards relative z-[1] cursor-pointer h-[457px] hover:scale-110 overflow-hidden shadow-destinationCard transition-all ease-linear duration-200 rounded-[36px] flex flex-col bg-white ">
                             <div className=" h-[320px] overflow-hidden mb-7">
-                                <img className="w-full h-full object-cover" src={TopRome} alt="Rome, Italy" />
+                            <img className="w-full h-full object-cover" src={TopRome} alt="Full Europe"/>
                             </div>
-                            <div className="destination_text px-5 pb-7 flex-1">
+                            <div className="destination_text z-1  px-5 pb-7 flex-1">
                                 <div className="flex items-start justify-between mb-3">
-                                    <h4 className="text-[20px] text-heading font-semibold font-opensans">Rome, Italy</h4>
+                                    <h4 className="text-[20px] text-heading font-semibold font-opensans">Rome, Italty</h4>
                                     <p className="text-paragraph text-base font-poppins">$5,42k</p>
                                 </div>
                                 <div className="flex gap-2">
@@ -27,6 +27,10 @@ const TopSell = () => {
                                     <p className="text-paragraph text-start text-base font-poppins">10 Days Trip</p>
                                 </div>
                             </div>
+                        </div>
+
+                        <div className="destination_images absolute " >
+                            <img  src={TopRomeBg} alt="top europ " />
                         </div>
 
                         {/* Card 2 */}

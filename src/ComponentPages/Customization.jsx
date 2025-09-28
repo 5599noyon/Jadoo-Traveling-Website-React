@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Palette, Type, Layout, Settings, Save, RotateCcw, Eye, Moon, Sun } from 'lucide-react';
+import NavBar from '../Component/NavBar';
+import Footer from '../Component/Footer';
 
 export default function Customization() {
   const [activeTab, setActiveTab] = useState('appearance');
@@ -96,7 +98,13 @@ export default function Customization() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+
+    <div>
+      <NavBar/>
+    </div>
+
+    <div className="min-h-screen bg-gray-50 md:pt-[130px] ">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -473,5 +481,11 @@ export default function Customization() {
         </div>
       </div>
     </div>
+
+    <div>
+      <Footer/>
+    </div>
+
+    </>
   );
 }
