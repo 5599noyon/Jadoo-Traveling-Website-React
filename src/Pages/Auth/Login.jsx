@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { MainIcon, PlainLogin1, PlaneLogin2, TravellerBgLogin, TravellerLogin } from '../../ImportImages/ImportImages';
 import { useAuth } from '../../Hooks/useAuth';
 
@@ -12,7 +12,6 @@ export default function Login() {
 
   const {login} = useAuth();
   const {currentUser} = useAuth();
-  const navigate = useNavigate
 
   const [userData, setUserData] = useState({
      email: "",
@@ -25,14 +24,10 @@ export default function Login() {
      setUserData({...userData, [name]: value})
   }
 
-  const onSubmit = (e)=> {
+  const handleLogin = (e)=> {
      e.preventDefault();
-     login(userData.email, userData.password, navigate )
+     login(userData.email, userData.password )
   }
-
-  const handleSubmit = () => {
-    console.log('Login attempt:', { email, password, rememberMe });
-  };
 
   const handleSocialLogin = (provider) => {
     console.log(`Login with ${provider}`);
@@ -40,7 +35,7 @@ export default function Login() {
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      handleSubmit();
+      handleLogin();
     }
   };
 
@@ -129,7 +124,7 @@ export default function Login() {
         </div>
 
         {/* Login Form */}
-        <form onSubmit={onSubmit} className="space-y-6">
+        <form onSubmit={handleLogin} className="space-y-6">
           {/* Email Field */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
@@ -194,7 +189,7 @@ export default function Login() {
           {/* Sign In Button */}
           <button
             type='submit'
-            onClick={handleSubmit}
+            onClick={handleLogin}
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-medium hover:from-blue-700 hover:to-purple-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
           >
             <span className="flex items-center justify-center">

@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { Eye, EyeOff, Upload, User } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { MainIcon } from '../../ImportImages/ImportImages';
+import { useAuth } from '../../Hooks/useAuth';
+
 
 export default function SignUp() {
+  const {signup} = useAuth()
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -69,16 +73,17 @@ export default function SignUp() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSignup = (e) => {
     e.preventDefault();
-    const newErrors = validateForm();
+    signup(formData.email, formData.password, navigate)
+    // const newErrors = validateForm();
     
-    if (Object.keys(newErrors).length === 0) {
-      console.log('Form submitted:', formData);
-      alert('Account created successfully!');
-    } else {
-      setErrors(newErrors);
-    }
+    // if (Object.keys(newErrors).length === 0) {
+    //   console.log('Form submitted:', formData);
+    //   alert('Account created successfully!');
+    // } else {
+    //   setErrors(newErrors);
+    // }
   };
 
   return (
@@ -120,7 +125,7 @@ export default function SignUp() {
           <p className="text-gray-600">Join us today and get started</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form onSubmit={handleSignup} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Name Field */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">

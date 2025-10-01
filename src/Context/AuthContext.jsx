@@ -1,10 +1,11 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../service/firebase/firebase.config";
 
 export const AuthContext = createContext({
      currentUser: null,
      loading: true,
+     signup: () => { },
      login: () => { },
      logout: () => { }
 })
@@ -24,22 +25,39 @@ const AuthProvider = ({ children }) => {
 
      }, [])
 
-     const login = (email, password, navigate ) => {
+     const signup = (email, password, navigate) => {
           createUserWithEmailAndPassword(auth, email, password)
-          .then(()=>{
-           sendEmailVerification(auth.currentUser)
                .then(() => {
-                    alert("Email Verification Sent! Check Your Email")
+                    sendEmailVerification(auth.currentUser)
+                         .then(() => {
+                              alert("Email Verification Sent! Check Your Email")
 
-                    if (navigate) {
-                         return navigate("/auth/login")
-                    }
+                              if (navigate) {
+                                   return navigate("/auth/login")
+                              }
 
-               }).catch((err)=> {
-                    console.log("Verification Faild");
+                         }).catch((err) => {
+                              console.log("Verification Faild");
+
+                         })
+               })
+
+     }
+     const login = (email, password) => {
+          signInWithEmailAndPassword(auth, email, password)
+               .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log(user);
                     
                })
-          })
+               .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorMessage);
+                    
+               });
+
 
      }
 
@@ -47,7 +65,7 @@ const AuthProvider = ({ children }) => {
           signOut(auth)
      }
 
-     const Value = { currentUser, loading, login, logout }
+     const Value = { currentUser, loading, signup, login, logout }
 
      return (
           <AuthContext.Provider value={Value} >
