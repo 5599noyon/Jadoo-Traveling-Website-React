@@ -62,37 +62,37 @@ const DestinationsPage = () => {
       {
         name: 'Xcaret Park',
         things: '2737 things to do',
-        image: 'https://lh3.googleusercontent.com/p/AF1QipMRKRGPLZ5wBSOCr9wgJsemg_4Pr3wrxOusb1o=s294-w294-h220-n-k-no'
+        image: 'https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1200,h_630/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/kcjfmuipclyxittjvjva/Xcaret%20Natural%20Water%20Park%20Admission%20in%20Playa%20del%20Carmen.jpg'
       },
       {
         name: 'Statue of Liberty',
         things: '3880 things to do',
-        image: ' https://lh3.googleusercontent.com/gpms-cs-s/AB8u6HZa5nWtb6FpwdjNuWKh3F7AAnxrmnXep4h6mFoH_UoWWdhaUN7hHnFRqGer7euWL2k5Brm2AleaRedhTYJe0QpfvZv_hK2IxXYxCJlK-5PKFY9-9qe3500XIRWtHHXCsF8qRI7KEw=s294-w294-h220-n-k-no '
+        image: ' https://media.nomadicmatt.com/2023/ellistour1.jpeg '
       },
       {
         name: 'Smoky Mountains',
         things: '365 things to do',
-        image: 'https://lh3.googleusercontent.com/gpms-cs-s/AB8u6HYBIJZ3QS7ew808uTI3Y2FqlP9WTJvvQvEHLs4vZ_eiRcjO-NYfkFhCJ-GOQkbKeZAGIEwuKihTmuOZcq9oz-rprG-Tj0qpygU11AWiYPuo7WVMlbkXnqEpk9NVmSchI2F7Z0q1oA=s294-w294-h220-n-k-no'
+        image: 'https://www.visitmysmokies.com/media/67dd51aff1a2be90810fa16e/original.webp'
       },
       {
         name: 'Disney World®',
         things: '1095 things to do',
-        image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npWg3_bi4KxJWCixc4z0dOu8qPx0Xf8D8xWNnWIcDbC2m_mUY0brr9Tagf42DVHOiX_OZ7B-dY_5XDMCF9dtrRbGboc7i2o8cm-C4Bd6s0ciXPn5e2JGpOGh0viyA7faPSFigc=s294-w294-h220-n-k-no'
+        image: 'https://gardenandgun.com/wp-content/uploads/2024/02/AdobeStock_560429194_Editorial_Use_Only.jpeg'
       },
       {
         name: 'Greenland',
         things: '3828 things to do',
-        image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4no0wJPEHXwjw6u38pg6jfl5gI_Pk4I5AWyuMFdd7SvOJwFKeurUaJek9CqwY9qEUCTkTx54heN6LhiT9wFOzBWqGktae7qFUqcuwk6GuaGfEqa8J-zccfK8I_KkDXiT3p5k7WLS=s294-w294-h220-n-k-no '
+        image: 'https://images.squarespace-cdn.com/content/v1/65561afa35d5f77eea3c4a41/2ef7c4c6-3c52-4afb-89bd-8362b64fac90/IMG_2027.jpg '
       },
       {
         name: 'Niagara Falls',
         things: '6778 things to do',
-        image: ' https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqmexd5Lehn_tFu_mQBJZ2g1fnsjD1uPR1AfVbhyC0-SPS04XOTseaxNhn4XQANg7H0brPJYBsD2zHzCIRaWP2p6VWjICnD_SB5vN8fCIBViTAhHquVxI51bVX3ro-58DPo0pJh=s294-w294-h220-n-k-no '
+        image: ' https://assets.simpleviewinc.com/simpleview/image/upload/crm/newyorkstate/kryptonist-Instagram-2829-ig-17924041106591374-1-_D7B0197C-B1E6-E631-46E255AA1AC51751-d7b01765a3f583c_d7b01bcc-bcda-1dcb-00749d125dd0f84f.jpg'
       },
       {
         name: 'San Diego',
         things: '3349 things to do',
-        image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrLtRDG9h_GSovnAmkayrQktaLnQd2nMFOifLw3k92t-_FVNnVwB5IF-6Ti0tKqyDo9e65Gc7sOB4Q7f746Jiz2qsNWunW6Zez0lvkBFSL6NF2bCDYxiUlHU1OemONKCliGermNjQ=s294-w294-h220-n-k-no'
+        image: 'https://rpmliving.com/wp-content/uploads/2024/10/San-Diego-2.jpg'
       }
     ],
 
@@ -148,7 +148,7 @@ const DestinationsPage = () => {
       {
         name: 'Chad',
         things: '2737 things to do',
-        image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqqyyDwba36CrMTDskdrt5KkzWI7WenT0xOiz07FX4IYAs3f8PEF5GjQwhKdTYqBp7yWTWdFJcZFBb9kooXrr12ACwhzhSkLIfL2IUfQc9ouW0Z-o-jds4f5gBe9Ye9RhDn-qGsaZd1rF8=w540-h312-n-k-no'
+        image: 'https://govolunteerafrica.org/wp-content/uploads/2019/10/Zakouma-National-Park.jpg'
       },
       {
         name: 'Cabo Verde',
@@ -158,12 +158,12 @@ const DestinationsPage = () => {
       {
         name: 'Cameroon',
         things: '365 things to do',
-        image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nok37puESWJZb-ib5pa-NcvZSTCtrebWZldDoPbrshwJ3jpOinW-gCFNtuNqsEUpyNfsJIbu3wu7Q7hptcuSMDc1xoru022q-gHHaEdT77dZzK3BPEMrhEBh2u_jV-h23M0xz3D=w540-h312-n-k-no'
+        image: 'https://www.gokitetours.com/wp-content/uploads/2024/07/The-famous-Tourist-places-in-Cameroon-.webp'
       },
       {
         name: 'Burundi',
         things: '1095 things to do',
-        image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqj0gqA7mnNxVnL--VIDGKrCtwdVyeQBWVM68-ncUD15jcKsUE6eOtWYKfSdXZMUS2Cfs9qIEuMdBHQYACP8ytrr6_lUy6748YVF2p1yQb8eQxTYkoAnY2RFMrGuJcbbl8G1LQB=w540-h312-n-k-no'
+        image: 'https://albertinetours.com/wp-content/uploads/2023/02/Waterfall-exploration.jpg'
       },
       {
         name: 'Botswana',
@@ -173,7 +173,7 @@ const DestinationsPage = () => {
       {
         name: 'Angola',
         things: '6778 things to do',
-        image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqky-PHt4qx7IZoK2KUlHD4oSqdXmcq4DnNiGIUCJneb20KYiaiw_6gY1sB9aMf0u1FfOfZUM4RFy7wtPN5XbGv3WECc_S0rphXCNiS8CUDOFDM7v0oDI3EH0CQq7Bz9VGfA0HvKnSmjDtc=w540-h312-n-k-no'
+        image: 'https://content.r9cdn.net/rimg/dimg/77/75/979caaae-city-103496-173af635417.jpg?width=1366&height=768&xhint=2202&yhint=1393&crop=true'
       },
       {
         name: 'Algeria',

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { MainIcon, PlainLogin1, PlaneLogin2, TravellerBgLogin, TravellerLogin } from '../../ImportImages/ImportImages';
 import { useAuth } from '../../Hooks/useAuth';
 
@@ -11,6 +11,8 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const {login} = useAuth();
+  const {currentUser} = useAuth();
+  const navigate = useNavigate
 
   const [userData, setUserData] = useState({
      email: "",
@@ -25,7 +27,7 @@ export default function Login() {
 
   const onSubmit = (e)=> {
      e.preventDefault();
-     login(userData.email, userData.password)
+     login(userData.email, userData.password, navigate )
   }
 
   const handleSubmit = () => {

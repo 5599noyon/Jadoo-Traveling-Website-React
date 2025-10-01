@@ -5,8 +5,10 @@ import { useRef } from "react"
 import SettingsDropdown from "../ComponentPages/SettingsDropdown"
 import TheamButton from "../ComponentPages/TheamButton"
 import NavSearch from "../ComponentPages/NavSearch"
+import { useAuth } from "../Hooks/useAuth"
 
 const NavBar = () => {
+  const { currentUser } = useAuth()
   const navbar = useRef(null)
 
   const NavStyle = ({ isActive, isPending, isTransitioning }) =>
@@ -61,6 +63,19 @@ const NavBar = () => {
     </ul>
   </div>
 
+  { !currentUser? (<>
+<div className=" flex items-center justify-center gap-[20px] ml-[260px] " >
+   <Link to={"/auth/login"} > <Button btnStyle="default"> Login </Button> </Link>
+  <Link to={"/auth/signup"} ><Button btnStyle="secondery"> Sign Up </Button></Link>
+ </div>
+
+  <select defaultValue="Pick a font " className="select-ghost ml-[42px] outline-none text-[17px] font-bold ">
+  
+  <option >EN</option>
+  <option >BN</option>
+</select>
+
+  </>) : ( <>
   <div className="navbar-end flex items-center gap-[45px] ">
     <div className=" active:outline-none ">
       <NavSearch/>
@@ -71,15 +86,11 @@ const NavBar = () => {
     <button className=" z-40 " > <SettingsDropdown/> </button>
   </div>
   </div>
+  </> ) }
 
-  <select defaultValue="Pick a font " className="select-ghost ml-[42px] outline-none text-[17px] font-bold ">
-  
-  <option >EN</option>
-  <option >BN</option>
-</select>
 </div>
       
-    </nav>
+  </nav>
   )
 }
 

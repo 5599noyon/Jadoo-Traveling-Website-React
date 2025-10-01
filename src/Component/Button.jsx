@@ -5,7 +5,7 @@ const Button = ({ TagName = "button", btnStyle = "default", children, ...props }
             return " bg-transparent border-[1px] border-[#212832] hover:bg-blue-500  hover:text-blue-50  btn ";
         }
         if (btnStyle === "secondery") {
-            return " bg-transparent border-[1px] border-[#212832] hover:bg-green-500  hover:text-blue-50  btn ";
+            return " bg-transparent border-[1px] border-[#212832] hover:bg-green-500  hover:text-blue-50  btn text-nowrap ";
         }
         if (btnStyle === "third") {
             return " bg-[#F1A501] border-none rounded-[10px] py-[28px] px-[18px] text-[#FFFFFF] text-[18px] btn ";

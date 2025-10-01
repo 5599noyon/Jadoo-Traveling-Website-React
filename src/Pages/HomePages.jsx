@@ -5,10 +5,12 @@ import Information from "../ComponentPages/Information"
 import NextTrip from "../ComponentPages/NextTrip"
 import Testimonials from "../ComponentPages/Testimonials"
 import TopSell from "../ComponentPages/TopSell"
+import { useAuth } from "../Hooks/useAuth"
 
 
 const HomePages = () => {
   const api = import.meta.env.VITE_apiKey
+  const {currentUser} = useAuth();
   return (
     <>
 

@@ -11,12 +11,12 @@ const BookingWebsite = () => {
     {
       name: 'Kuala Lumpur',
       country: 'Malaysia',
-      image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrVuWYJFU0cmRqeYB9_yRVMyTvkffVi1NLin9gNcBYe3UZXN6yboq0dWAxcJSXGtrMTcioPMdvPAlQ5oCKFYKldAHWP-NM6FkNbc0yAmYUZCyLq4OOm-i7FQWddITJxeHFELjJlbw=w540-h312-n-k-no'
+      image: 'https://img.static-kl.com/images/media/1F159175-0757-4F9E-A9A8EC6DBD5BCE68'
     },
     {
       name: 'Bangkok',
       country: 'Thailand',
-      image: 'https://lh3.googleusercontent.com/gps-cs-s/AC9h4npESBwOcHSoL59x_I6VAIrWiauNXWvXodo4vcBFJFBHgeV7suAsL-jG54HTGF2ze92ZFvk4qck581OJntBvzxR66jqQg54kAUVZLJjSbnAtvdqornVKDUkOsTjmwPyWg0UsoLG6=w540-h312-n-k-no'
+      image: 'https://cdn.generationvoyage.fr/2023/12/Temple-Wat-Arun-Bangkok-Thailande.jpeg'
     },
     {
       name: 'Dhaka',
@@ -26,12 +26,12 @@ const BookingWebsite = () => {
     {
       name: 'Singapore',
       country: 'Singapore',
-      image: 'https://lh7-us.googleusercontent.com/docsz/AD_4nXeNKza7I6EWcjJvWCwcHtNKTdxRGh3aSR6fHHn_YTvclYOAbpztwjXJZHlbvFz4nz2N0E6crZulC0ilJy_D6X2QN-t1m6J8Yc599j2ntw3OyZ7Pq2Diy3EnGMKqwiE0J-mw7ygUHk9n-lDZRmmUIWIJWPYvcqMp_FLEGNgwtQ?key=TzuElTi4gUuui4T89fI-uQ'
+      image: 'https://images.goway.com/production/featured_images/shutterstock_1116483092.jpg'
     },
     {
-      name: "Cox's Bazar",
-      country: 'Bangladesh',
-      image: 'https://pix10.agoda.net/hotelImages/119/1196495/1196495_17122303270060592537.jpg?ca=6&ce=1&s=702x392'
+      name: "China",
+      country: 'China',
+      image: 'https://vj-prod-website-cms.s3.ap-southeast-1.amazonaws.com/g2-1716175948461.jpg'
     },
     {
       name: "Thailand",
