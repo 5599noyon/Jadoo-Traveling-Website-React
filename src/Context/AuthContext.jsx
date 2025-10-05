@@ -1,13 +1,15 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../service/firebase/firebase.config";
+import { GoogleAuthProvider } from "firebase/auth/web-extension";
 
 export const AuthContext = createContext({
      currentUser: null,
      loading: true,
      signup: () => { },
      login: () => { },
-     logout: () => { }
+     logout: () => { },
+     gmailLogin: () => { },
 })
 
 const AuthProvider = ({ children }) => {
@@ -49,13 +51,13 @@ const AuthProvider = ({ children }) => {
                     // Signed in 
                     const user = userCredential.user;
                     console.log(user);
-                    
+
                })
                .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     console.log(errorMessage);
-                    
+
                });
 
 
@@ -65,7 +67,31 @@ const AuthProvider = ({ children }) => {
           signOut(auth)
      }
 
-     const Value = { currentUser, loading, signup, login, logout }
+     const gmailLogin = () => {
+
+          const provider = new GoogleAuthProvider();
+          signInWithPopup(auth, provider)
+               .then((result) => {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    const credential = GoogleAuthProvider.credentialFromResult(result);
+                    const token = credential.accessToken;
+                    // The signed-in user info.
+                    const user = result.user;
+                    // IdP data available using getAdditionalUserInfo(result)
+                    // ...
+               }).catch((error) => {
+                    // Handle Errors here.
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // The email of the user's account used.
+                    const email = error.customData.email;
+                    // The AuthCredential type that was used.
+                    const credential = GoogleAuthProvider.credentialFromError(error);
+                    // ...
+               });
+     }
+
+     const Value = { currentUser, loading, signup, login, logout, gmailLogin, }
 
      return (
           <AuthContext.Provider value={Value} >

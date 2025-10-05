@@ -56,7 +56,7 @@ const SettingsDropdown = () => {
               </div>
               <div>
                 <p className="font-medium">Shahriar Noyon</p>
-                <p className="text-sm text-blue-100">john.doe@email.com</p>
+                <p className="text-sm text-blue-100"> noyon@email.com </p>
               </div>
             </div>
           </div>

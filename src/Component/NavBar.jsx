@@ -14,7 +14,7 @@ const NavBar = () => {
   const NavStyle = ({ isActive, isPending, isTransitioning }) =>
     [
       isPending ? "pending" : "",
-      isActive ? " text-[17px] text-red-600 border-[1px] border-red-600 pt-[2px] pb-[2px] leading-10 font-semibold shadow-companyCard " : " text-[17px] text-p leading-10 font-semibold ",
+      isActive ? " text-[17px] text-red-600 border-[1px] border-red-600 pt-[2px] pb-[2px] leading-10 font-semibold shadow-sm border-b border-gray-200/50 " : " text-[17px] text-p leading-10 font-semibold ",
       isTransitioning ? "transitioning" : "",
     ].join(" ")
   
@@ -41,7 +41,7 @@ const NavBar = () => {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow ">
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow-sm shadow-border-b border-gray-200/50 ">
         <li> <NavLink className= {NavStyle}  to={"/desitnations"} >Desitnations</NavLink></li>
         <li>
           <NavLink className= {NavStyle}  to={"/hotels"} > Hotels </NavLink>
