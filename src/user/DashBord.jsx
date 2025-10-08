@@ -1,425 +1,216 @@
 import React, { useState } from 'react';
-import { BarChart3, TrendingUp, Users, Eye, Search, Bell, ChevronDown, ArrowUpRight, ArrowDownRight, Sparkles, Zap, Target, Activity, MoreVertical } from 'lucide-react';
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { TrendingUp, Users, Eye, MousePointerClick, DollarSign, Globe, Activity, ArrowUp, ArrowDown, Menu, X } from 'lucide-react';
 
 const DashBord = () => {
-  const [timeFilter, setTimeFilter] = useState('daily');
-  const [hoveredStat, setHoveredStat] = useState(null);
-  
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [timeRange, setTimeRange] = useState('7d');
+
   const stats = [
-    { 
-      title: 'Total Reach', 
-      value: '150K', 
-      change: '+12.5%',
-      trend: 'up',
-      icon: Eye, 
-      gradient: 'from-violet-500 via-purple-500 to-fuchsia-500',
-      bg: 'bg-gradient-to-br from-violet-50 to-purple-50',
-    },
-    { 
-      title: 'Paid Reach', 
-      value: '115K', 
-      change: '+8.2%',
-      trend: 'up',
-      icon: Zap, 
-      gradient: 'from-cyan-500 via-blue-500 to-indigo-500',
-      bg: 'bg-gradient-to-br from-cyan-50 to-blue-50',
-    },
-    { 
-      title: 'Organic Reach', 
-      value: '35K', 
-      change: '+15.3%',
-      trend: 'up',
-      icon: Target, 
-      gradient: 'from-pink-500 via-rose-500 to-red-500',
-      bg: 'bg-gradient-to-br from-pink-50 to-rose-50',
-    },
-    { 
-      title: 'Engagement', 
-      value: '4.8%', 
-      change: '-2.1%',
-      trend: 'down',
-      icon: Activity, 
-      gradient: 'from-amber-500 via-orange-500 to-red-500',
-      bg: 'bg-gradient-to-br from-amber-50 to-orange-50',
-    },
+    { title: 'Total Visitors', value: '24,531', change: '+12.5%', positive: true, icon: Users, color: 'bg-blue-500' },
+    { title: 'Page Views', value: '89,429', change: '+8.2%', positive: true, icon: Eye, color: 'bg-purple-500' },
+    { title: 'Conversion Rate', value: '3.24%', change: '+0.4%', positive: true, icon: MousePointerClick, color: 'bg-green-500' },
+    { title: 'Revenue', value: '$12,426', change: '-2.1%', positive: false, icon: DollarSign, color: 'bg-orange-500' },
   ];
 
-  const channels = [
-    { name: 'Facebook', visits: '124K', growth: '+12%', percent: 85, gradient: 'from-blue-500 to-blue-600', bg: 'from-blue-50 to-blue-100', icon: '📘' },
-    { name: 'Instagram', visits: '124K', growth: '+18%', percent: 92, gradient: 'from-pink-500 via-purple-500 to-indigo-500', bg: 'from-pink-50 to-purple-50', icon: '📷' },
-    { name: 'LinkedIn', visits: '98K', growth: '+8%', percent: 68, gradient: 'from-blue-600 to-blue-700', bg: 'from-blue-50 to-indigo-50', icon: '💼' },
-    { name: 'YouTube', visits: '156K', growth: '+25%', percent: 95, gradient: 'from-red-500 to-red-600', bg: 'from-red-50 to-orange-50', icon: '▶️' },
+  const trafficData = [
+    { name: 'Mon', visitors: 4200, pageViews: 12400 },
+    { name: 'Tue', visitors: 3800, pageViews: 11200 },
+    { name: 'Wed', visitors: 5100, pageViews: 15300 },
+    { name: 'Thu', visitors: 4600, pageViews: 13800 },
+    { name: 'Fri', visitors: 5900, pageViews: 17700 },
+    { name: 'Sat', visitors: 3200, pageViews: 9600 },
+    { name: 'Sun', visitors: 2800, pageViews: 8400 },
   ];
 
-  const demographics = [
-    { age: '< 15 years', count: '21K', percent: 27, color: 'from-pink-500 to-rose-500' },
-    { age: '20 - 35 years', count: '64K', percent: 40, color: 'from-blue-500 to-indigo-500' },
-    { age: '40 - 50 years', count: '18K', percent: 16, color: 'from-emerald-500 to-teal-500' },
-    { age: '> 50 years', count: '5K', percent: 8, color: 'from-purple-500 to-violet-500' },
+  const revenueData = [
+    { name: 'Jan', revenue: 8400 },
+    { name: 'Feb', revenue: 9200 },
+    { name: 'Mar', revenue: 11100 },
+    { name: 'Apr', revenue: 10500 },
+    { name: 'May', revenue: 12800 },
+    { name: 'Jun', revenue: 12400 },
   ];
 
-  const monthlyData = [
-    { month: 'Jan', reach: 80, paid: 60, organic: 20 },
-    { month: 'Feb', reach: 95, paid: 70, organic: 45 },
-    { month: 'Mar', reach: 65, paid: 75, organic: 40 },
-    { month: 'Apr', reach: 110, paid: 50, organic: 65 },
-    { month: 'May', reach: 75, paid: 65, organic: 85 },
-    { month: 'Jun', reach: 95, paid: 85, organic: 65 },
-    { month: 'Jul', reach: 170, paid: 95, organic: 60 },
-    { month: 'Aug', reach: 140, paid: 95, organic: 40 },
-    { month: 'Sep', reach: 115, paid: 100, organic: 50 },
-    { month: 'Oct', reach: 125, paid: 105, organic: 70 },
-    { month: 'Nov', reach: 155, paid: 115, organic: 60 },
-    { month: 'Dec', reach: 150, paid: 115, organic: 85 },
+  const deviceData = [
+    { name: 'Desktop', value: 58, color: '#3B82F6' },
+    { name: 'Mobile', value: 32, color: '#8B5CF6' },
+    { name: 'Tablet', value: 10, color: '#10B981' },
   ];
 
-  const maxReach = Math.max(...monthlyData.map(d => d.reach));
+  const topPages = [
+    { page: '/home', views: 15420, bounce: '32%' },
+    { page: '/products', views: 12830, bounce: '28%' },
+    { page: '/blog', views: 9240, bounce: '45%' },
+    { page: '/about', views: 7120, bounce: '38%' },
+    { page: '/contact', views: 5890, bounce: '41%' },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50/30 to-blue-50/30 relative overflow-hidden md:pt-[140px]">
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '4s' }}></div>
+    <div className="flex h-screen bg-gray-50 md:pt-[120px]">
+      {/* Sidebar */}
+      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static`}>
+        <div className="flex items-center justify-between p-6 border-b">
+          <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
+          <button onClick={() => setSidebarOpen(false)} className="lg:hidden">
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+        <nav className="p-4">
+          <a href="#" className="flex items-center px-4 py-3 mb-2 text-white bg-blue-500 rounded-lg">
+            <Activity className="w-5 h-5 mr-3" />
+            Overview
+          </a>
+          <a href="#" className="flex items-center px-4 py-3 mb-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <Globe className="w-5 h-5 mr-3" />
+            Websites
+          </a>
+          <a href="#" className="flex items-center px-4 py-3 mb-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <Users className="w-5 h-5 mr-3" />
+            Audience
+          </a>
+        </nav>
       </div>
 
-      {/* Clean Navigation */}
-      <nav className="relative bg-white/80 backdrop-blur-xl border-b border-gray-200/50 sticky top-0 z-50 ">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-200">
-                  <Sparkles className="w-6 h-6 text-white" />
-                </div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-purple-900 to-pink-900 bg-clip-text text-transparent">
-                  Dashboard
-                </h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <div className="relative max-w-7xl mx-auto p-6 space-y-6">
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {stats.map((stat, idx) => (
-            <div 
-              key={idx} 
-              onMouseEnter={() => setHoveredStat(idx)}
-              onMouseLeave={() => setHoveredStat(null)}
-              className={`group relative ${stat.bg} rounded-3xl p-6 hover:shadow-2xl hover:shadow-purple-200/50 hover:scale-105 transition-all duration-500 border border-white/50 overflow-hidden cursor-pointer`}
-            >
-              {/* Shine Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              
-              <div className="relative">
-                <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3.5 rounded-2xl bg-gradient-to-br ${stat.gradient} shadow-xl ${hoveredStat === idx ? 'shadow-purple-400/50 scale-110' : ''} transition-all duration-300`}>
-                    <stat.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold ${
-                    stat.trend === 'up' 
-                      ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' 
-                      : 'bg-red-100 text-red-700 border border-red-200'
-                  } shadow-sm`}>
-                    {stat.trend === 'up' ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
-                    {stat.change}
-                  </div>
-                </div>
-                <p className="text-gray-600 text-sm mb-2 font-medium">{stat.title}</p>
-                <p className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">{stat.value}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Chart Section */}
-        <div className="bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-            <div>
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 via-purple-900 to-pink-900 bg-clip-text text-transparent mb-2">
-                Performance Analytics
-              </h2>
-              <p className="text-gray-500 text-sm">Real-time metrics and insights</p>
-            </div>
-            <div className="flex gap-2 bg-gray-100 rounded-2xl p-1.5 border border-gray-200">
-              {['Daily', 'Weekly', 'Monthly'].map((filter) => (
+      {/* Main Content */}
+      <div className="flex-1 overflow-auto">
+        {/* Header */}
+        <header className="bg-white shadow-sm">
+          <div className="flex items-center justify-between px-6 py-4">
+            <button onClick={() => setSidebarOpen(true)} className="lg:hidden">
+              <Menu className="w-6 h-6" />
+            </button>
+            <h2 className="text-2xl font-semibold text-gray-800">Analytics Overview</h2>
+            <div className="flex gap-2">
+              {['24h', '7d', '30d', '90d'].map((range) => (
                 <button
-                  key={filter}
-                  onClick={() => setTimeFilter(filter.toLowerCase())}
-                  className={`px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 ${
-                    timeFilter === filter.toLowerCase()
-                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-300/50'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-white'
+                  key={range}
+                  onClick={() => setTimeRange(range)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    timeRange === range
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                 >
-                  {filter}
+                  {range}
                 </button>
               ))}
             </div>
           </div>
+        </header>
 
-          <div className="flex gap-6 mb-8 flex-wrap">
-            {[
-              { label: 'Total Reach', value: '185K', color: 'from-violet-500 to-purple-500' },
-              { label: 'Paid Reach', value: '133K', color: 'from-cyan-500 to-blue-500' },
-              { label: 'Organic', value: '85K', color: 'from-pink-500 to-rose-500' }
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 hover:bg-white hover:shadow-md transition-all">
-                <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${item.color} shadow-lg`}></div>
-                <span className="text-sm text-gray-600 font-medium">{item.label}</span>
-                <span className="text-sm font-bold text-gray-900">{item.value}</span>
+        {/* Dashboard Content */}
+        <main className="p-6">
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            {stats.map((stat, idx) => (
+              <div key={idx} className="bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div className="flex items-center justify-between mb-4">
+                  <div className={`${stat.color} p-3 rounded-lg`}>
+                    <stat.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div className={`flex items-center text-sm font-medium ${stat.positive ? 'text-green-600' : 'text-red-600'}`}>
+                    {stat.positive ? <ArrowUp className="w-4 h-4 mr-1" /> : <ArrowDown className="w-4 h-4 mr-1" />}
+                    {stat.change}
+                  </div>
+                </div>
+                <h3 className="text-gray-500 text-sm font-medium">{stat.title}</h3>
+                <p className="text-2xl font-bold text-gray-800 mt-1">{stat.value}</p>
               </div>
             ))}
           </div>
 
-          <div className="relative h-80">
-            <div className="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-xs text-gray-400 font-semibold">
-              <span>200k</span>
-              <span>150k</span>
-              <span>100k</span>
-              <span>50k</span>
-              <span>0</span>
+          {/* Charts Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            {/* Traffic Chart */}
+            <div className="bg-white rounded-xl shadow-sm p-6">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">Traffic Overview</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={trafficData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                  <XAxis dataKey="name" stroke="#9CA3AF" />
+                  <YAxis stroke="#9CA3AF" />
+                  <Tooltip contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }} />
+                  <Line type="monotone" dataKey="visitors" stroke="#3B82F6" strokeWidth={2} dot={{ fill: '#3B82F6', r: 4 }} />
+                  <Line type="monotone" dataKey="pageViews" stroke="#8B5CF6" strokeWidth={2} dot={{ fill: '#8B5CF6', r: 4 }} />
+                </LineChart>
+              </ResponsiveContainer>
             </div>
 
-            <div className="ml-12 h-full relative">
-              <svg className="w-full h-full" style={{ height: '300px' }}>
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <line
-                    key={i}
-                    x1="0"
-                    y1={`${i * 25}%`}
-                    x2="100%"
-                    y2={`${i * 25}%`}
-                    stroke="#f1f5f9"
-                    strokeWidth="1"
-                  />
-                ))}
-
-                <defs>
-                  <linearGradient id="purpleGradientWhite" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#a855f7" stopOpacity="0.2" />
-                    <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
-                  </linearGradient>
-                  <linearGradient id="lineGradientWhite" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#8b5cf6" />
-                    <stop offset="50%" stopColor="#a855f7" />
-                    <stop offset="100%" stopColor="#ec4899" />
-                  </linearGradient>
-                  <filter id="shadow">
-                    <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#a855f7" floodOpacity="0.3"/>
-                  </filter>
-                </defs>
-
-                <polyline
-                  fill="url(#purpleGradientWhite)"
-                  stroke="none"
-                  points={`0,100 ${monthlyData.map((d, i) => 
-                    `${(i / (monthlyData.length - 1)) * 100},${100 - (d.reach / maxReach) * 80}`
-                  ).join(' ')} 100,100`}
-                />
-
-                <polyline
-                  fill="none"
-                  stroke="url(#lineGradientWhite)"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  filter="url(#shadow)"
-                  points={monthlyData.map((d, i) => 
-                    `${(i / (monthlyData.length - 1)) * 100},${100 - (d.reach / maxReach) * 80}`
-                  ).join(' ')}
-                />
-
-                <polyline
-                  fill="none"
-                  stroke="#06b6d4"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  opacity="0.7"
-                  points={monthlyData.map((d, i) => 
-                    `${(i / (monthlyData.length - 1)) * 100},${100 - (d.paid / maxReach) * 80}`
-                  ).join(' ')}
-                />
-
-                <polyline
-                  fill="none"
-                  stroke="#ec4899"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  opacity="0.7"
-                  points={monthlyData.map((d, i) => 
-                    `${(i / (monthlyData.length - 1)) * 100},${100 - (d.organic / maxReach) * 80}`
-                  ).join(' ')}
-                />
-
-                {monthlyData.map((d, i) => (
-                  <g key={i}>
-                    <circle
-                      cx={`${(i / (monthlyData.length - 1)) * 100}%`}
-                      cy={`${100 - (d.reach / maxReach) * 80}%`}
-                      r="6"
-                      fill="white"
-                      stroke="url(#lineGradientWhite)"
-                      strokeWidth="3"
-                      className="hover:r-9 transition-all cursor-pointer"
-                      filter="url(#shadow)"
-                    />
-                  </g>
-                ))}
-              </svg>
-
-              <div className="flex justify-between text-xs text-gray-500 mt-4 font-semibold">
-                {monthlyData.map((d) => (
-                  <span key={d.month}>{d.month}</span>
-                ))}
-              </div>
+            {/* Revenue Chart */}
+            <div className="bg-white rounded-xl shadow-sm p-6">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">Monthly Revenue</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={revenueData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                  <XAxis dataKey="name" stroke="#9CA3AF" />
+                  <YAxis stroke="#9CA3AF" />
+                  <Tooltip contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }} />
+                  <Bar dataKey="revenue" fill="#10B981" radius={[8, 8, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
             </div>
           </div>
-        </div>
 
-        {/* Bottom Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Demographics */}
-          <div className="bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100">
-            <div className="flex justify-between items-center mb-8">
-              <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-1">
-                  Demographics
-                </h2>
-                <p className="text-gray-500 text-sm">Audience insights</p>
-              </div>
-              <button className="text-sm font-medium text-purple-600 hover:text-purple-700 flex items-center gap-1 transition-colors">
-                View More
-                <ChevronDown className="w-4 h-4 rotate-[-90deg]" />
-              </button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="flex flex-col items-center">
-                <div className="relative w-44 h-44 mb-6">
-                  <svg className="w-full h-full transform -rotate-90">
-                    <defs>
-                      <linearGradient id="maleGradWhite" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#8b5cf6" />
-                        <stop offset="100%" stopColor="#6366f1" />
-                      </linearGradient>
-                      <linearGradient id="femaleGradWhite" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ec4899" />
-                        <stop offset="100%" stopColor="#f43f5e" />
-                      </linearGradient>
-                      <linearGradient id="otherGradWhite" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#14b8a6" />
-                        <stop offset="100%" stopColor="#10b981" />
-                      </linearGradient>
-                      <filter id="pieShadow">
-                        <feDropShadow dx="0" dy="2" stdDeviation="4" floodOpacity="0.2"/>
-                      </filter>
-                    </defs>
-                    <circle cx="88" cy="88" r="70" fill="none" stroke="#f1f5f9" strokeWidth="22" />
-                    <circle cx="88" cy="88" r="70" fill="none" stroke="url(#maleGradWhite)" strokeWidth="22" strokeDasharray="299 440" strokeLinecap="round" filter="url(#pieShadow)" />
-                    <circle cx="88" cy="88" r="70" fill="none" stroke="url(#femaleGradWhite)" strokeWidth="22" strokeDasharray="88 440" strokeDashoffset="-299" strokeLinecap="round" filter="url(#pieShadow)" />
-                    <circle cx="88" cy="88" r="70" fill="none" stroke="url(#otherGradWhite)" strokeWidth="22" strokeDasharray="53 440" strokeDashoffset="-387" strokeLinecap="round" filter="url(#pieShadow)" />
-                  </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-sm font-semibold text-gray-500">Total</span>
-                    <span className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">100%</span>
+          {/* Bottom Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Device Distribution */}
+            <div className="bg-white rounded-xl shadow-sm p-6">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">Device Distribution</h3>
+              <ResponsiveContainer width="100%" height={250}>
+                <PieChart>
+                  <Pie
+                    data={deviceData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={90}
+                    paddingAngle={5}
+                    dataKey="value"
+                  >
+                    {deviceData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="flex justify-center gap-4 mt-4">
+                {deviceData.map((device, idx) => (
+                  <div key={idx} className="flex items-center">
+                    <div className="w-3 h-3 rounded-full mr-2" style={{ backgroundColor: device.color }}></div>
+                    <span className="text-sm text-gray-600">{device.name} {device.value}%</span>
                   </div>
-                </div>
-                <div className="space-y-3 w-full">
-                  {[
-                    { label: 'Male', percent: '68%', gradient: 'from-violet-500 to-indigo-500' },
-                    { label: 'Female', percent: '20%', gradient: 'from-pink-500 to-rose-500' },
-                    { label: 'Other', percent: '12%', gradient: 'from-teal-500 to-emerald-500' }
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex items-center justify-between bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 hover:bg-white hover:shadow-md transition-all">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${item.gradient} shadow-md`}></div>
-                        <span className="text-sm text-gray-700 font-medium">{item.label}</span>
-                      </div>
-                      <span className="text-sm font-bold text-gray-900">{item.percent}</span>
-                    </div>
-                  ))}
-                </div>
+                ))}
               </div>
+            </div>
 
-              <div>
-                <h3 className="font-bold text-gray-900 mb-6 text-lg">Age Groups</h3>
-                <div className="space-y-5">
-                  {demographics.map((demo, idx) => (
-                    <div key={idx}>
-                      <div className="flex justify-between text-sm mb-2">
-                        <span className="text-gray-600 font-medium">{demo.age}</span>
-                        <div className="flex gap-6">
-                          <span className="font-bold text-gray-900">{demo.count}</span>
-                          <span className="text-gray-500 w-10 text-right font-semibold">{demo.percent}%</span>
-                        </div>
-                      </div>
-                      <div className="h-2.5 bg-gray-100 border border-gray-200 rounded-full overflow-hidden">
-                        <div 
-                          className={`h-full bg-gradient-to-r ${demo.color} rounded-full transition-all duration-700 shadow-lg`} 
-                          style={{ width: `${demo.percent}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+            {/* Top Pages */}
+            <div className="bg-white rounded-xl shadow-sm p-6 lg:col-span-2">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">Top Pages</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left py-3 px-4 text-sm font-semibold text-gray-600">Page</th>
+                      <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Views</th>
+                      <th className="text-right py-3 px-4 text-sm font-semibold text-gray-600">Bounce Rate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {topPages.map((page, idx) => (
+                      <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
+                        <td className="py-3 px-4 text-sm text-gray-800">{page.page}</td>
+                        <td className="py-3 px-4 text-sm text-gray-800 text-right font-medium">{page.views.toLocaleString()}</td>
+                        <td className="py-3 px-4 text-sm text-gray-600 text-right">{page.bounce}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-
-          {/* Top Channels */}
-          <div className="bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100">
-            <div className="flex justify-between items-center mb-8">
-              <div>
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-1">
-                  Top Channels
-                </h2>
-                <p className="text-gray-500 text-sm">Platform performance</p>
-              </div>
-              <button className="text-sm font-medium text-purple-600 hover:text-purple-700 flex items-center gap-1 transition-colors">
-                View All
-                <ChevronDown className="w-4 h-4 rotate-[-90deg]" />
-              </button>
-            </div>
-
-            <div className="space-y-4">
-              {channels.map((channel, idx) => (
-                <div key={idx} className={`group bg-gradient-to-br ${channel.bg} border border-gray-200 rounded-2xl p-5 hover:shadow-xl hover:shadow-purple-200/50 hover:scale-105 transition-all duration-300 relative overflow-hidden`}>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                  <div className="relative">
-                    <div className="flex justify-between items-center mb-4">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-12 h-12 bg-gradient-to-br ${channel.gradient} rounded-2xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                          {channel.icon}
-                        </div>
-                        <span className="text-gray-900 font-bold text-lg">{channel.name}</span>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <span className="text-gray-900 font-bold text-xl">{channel.visits}</span>
-                        <span className="flex items-center gap-1 bg-emerald-100 border border-emerald-200 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
-                          <ArrowUpRight className="w-3 h-3" />
-                          {channel.growth}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="h-2.5 bg-gray-200 rounded-full overflow-hidden shadow-inner">
-                      <div 
-                        className={`h-full bg-gradient-to-r ${channel.gradient} rounded-full transition-all duration-700 shadow-lg`}
-                        style={{ width: `${channel.percent}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        </main>
       </div>
     </div>
   );

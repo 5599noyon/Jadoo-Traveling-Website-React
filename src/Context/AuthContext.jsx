@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider,  } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, GoogleAuthProvider, FacebookAuthProvider, signInAnonymously, } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../service/firebase/firebase.config";
 
@@ -10,7 +10,8 @@ export const AuthContext = createContext({
      logout: () => { },
      gmailLogin: () => { },
      facebookLogin: () => { },
-     twitterLogin: () => { },
+     anonymouslyLogin: () => {},
+     getUserInfo: () => { }
 })
 
 const AuthProvider = ({ children }) => {
@@ -99,6 +100,8 @@ const AuthProvider = ({ children }) => {
                .then((result) => {
                     // The signed-in user info.
                     const user = result.user;
+                    console.log(user.providerData[0].providerId);
+
 
                     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
                     const credential = FacebookAuthProvider.credentialFromResult(result);
@@ -115,41 +118,43 @@ const AuthProvider = ({ children }) => {
                     const email = error.customData.email;
                     // The AuthCredential type that was used.
                     const credential = FacebookAuthProvider.credentialFromError(error);
-
                     // ...
                });
 
      }
 
-     const twitterLogin = () => {
+     const anonymouslyLogin = () => {
 
-          const provider = new TwitterAuthProvider();
-
-          signInWithPopup(auth, provider)
-               .then((result) => {
-                    // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-                    // You can use these server side with your app's credentials to access the Twitter API.
-                    const credential = TwitterAuthProvider.credentialFromResult(result);
-                    const token = credential.accessToken;
-                    const secret = credential.secret;
-
-                    // The signed-in user info.
-                    const user = result.user;
-                    // IdP data available using getAdditionalUserInfo(result)
-                    // ...
-               }).catch((error) => {
-                    // Handle Errors here.
+          signInAnonymously(auth)
+               .then(() => {
+                    // Signed in..
+               })
+               .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    // The email of the user's account used.
-                    const email = error.customData.email;
-                    // The AuthCredential type that was used.
-                    const credential = TwitterAuthProvider.credentialFromError(error);
                     // ...
                });
      }
 
-     const Value = { currentUser, loading, signup, login, logout, gmailLogin, facebookLogin, twitterLogin }
+
+     const getUserInfo = () => {
+
+          const user = auth.currentUser;
+          if (user !== null) {
+               // The user object has basic properties such as display name, email, etc.
+               const displayName = user.displayName = email.slice(0, 1);
+               const email = user.email;
+               const photoURL = user.photoURL;
+               const emailVerified = user.emailVerified;
+
+               // The user's ID, unique to the Firebase project. Do NOT use
+               // this value to authenticate with your backend server, if
+               // you have one. Use User.getToken() instead.
+               const uid = user.uid;
+          }
+     }
+
+     const Value = { currentUser, loading, signup, login, logout, gmailLogin, facebookLogin, anonymouslyLogin ,getUserInfo }
 
      return (
           <AuthContext.Provider value={Value} >

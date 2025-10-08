@@ -8,8 +8,6 @@ import Hotels from "./Pages/Hotels";
 import Flights from "./Pages/Flights";
 import Bookings from "./Pages/Bookings";
 import ErrorPage from "./Pages/ErrorPage";
-// import SignupPage from "./Pages/SignupPage";
-// import LoginPage from "./Pages/LoginPage";
 import Customization from "./ComponentPages/Customization";
 import LocalEvents from "./ComponentPages/LocalEvents";
 import CalculatedWeather from "./ComponentPages/CalculatedWeather";
@@ -19,6 +17,7 @@ import SignUp from "./Pages/Auth/SingUp";
 import PublicRoute from "./route/PublicRoute";
 import AuthLayout from "./Layout/AuthLayout";
 import ProtectedRoute from "./route/ProtectedRoute";
+import DashBord from "./user/DashBord";
 
 const router = createBrowserRouter([
 
@@ -52,6 +51,7 @@ const router = createBrowserRouter([
       {path:"/hotels", Component: Hotels },
       {path:"/flights", Component: Flights },
       {path:"/bookings", Component: Bookings },
+      {path:"/dashbord", Component: DashBord },
     ]
   },
 
@@ -59,16 +59,6 @@ const router = createBrowserRouter([
     path: "*",
     Component: ErrorPage,
   },
-
-  // {
-  //    path: "/signup",
-  //   Component: SignupPage ,
-  // },
-
-  // {
-  //    path: "/login",
-  //   Component: LoginPage ,
-  // },
 
   {
     path: "localevents",

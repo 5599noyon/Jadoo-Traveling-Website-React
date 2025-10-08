@@ -27,7 +27,6 @@ const NavBar = () => {
       navbar.current.classList.remove("stickyNavbar")
     }
     console.log(value);
-    
   })
   
   return (
@@ -87,6 +86,8 @@ const NavBar = () => {
   </div>
   </div>
   </> ) }
+
+
 
 </div>
       

@@ -28,5 +28,6 @@ import TestimonialsCeo1 from "../assets/TestimonialsCeo1.svg"
 import TestimonialsCeo2 from "../assets/TestimonialsCeo2.png"
 import TestimonialsCeo3 from "../assets/TestimonialsCeo3.png"
 import MainIcon from "../assets/MainIcon.svg"
+import AnonymouslyLogo from "../assets/anonymously.png"
 
-export {services_weather, services_flight, services_events, service_customization, service_dot , TopRome, TopLondon, TopEurope, TopEuropeBg , TopRomeBg , TopAros, Next1, Next2, Next3, Nexttrip, Company1, Company2, Company3, Company4, Company5, InformationAro, FooterIcon, TravellerLogin, TravellerBgLogin, PlainLogin1, PlaneLogin2, TestimonialsCeo1, TestimonialsCeo2, TestimonialsCeo3, MainIcon, }
+export {services_weather, services_flight, services_events, service_customization, service_dot , TopRome, TopLondon, TopEurope, TopEuropeBg , TopRomeBg , TopAros, Next1, Next2, Next3, Nexttrip, Company1, Company2, Company3, Company4, Company5, InformationAro, FooterIcon, TravellerLogin, TravellerBgLogin, PlainLogin1, PlaneLogin2, TestimonialsCeo1, TestimonialsCeo2, TestimonialsCeo3, MainIcon, AnonymouslyLogo }

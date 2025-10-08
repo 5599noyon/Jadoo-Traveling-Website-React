@@ -7,12 +7,12 @@ import { useAuth } from '../Hooks/useAuth';
 
 const SettingsDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { logout } = useAuth();
+  const { currentUser, logout, getUserInfo } = useAuth();
 
   // Menu Items with proper click handlers
   const menuItems = [
     { icon: Settings, label: 'Settings & Privacy', onClick: () => console.log("Go to settings") },
-    { icon: BarChart3, label: 'Professional Dashboard', onClick: () => console.log("Go to dashboard") },
+    { icon: BarChart3, label: 'Professional Dashboard', link: '/dashboard' , onClick: () => console.log("Go to dashboard") },
     { icon: Gift, label: 'Special Offers', onClick: () => console.log("Show offers") },
     { icon: Calendar, label: 'Special Events', onClick: () => console.log("Show events") },
     { icon: Car, label: 'Vehicle Finds', onClick: () => console.log("Show vehicles") },
@@ -37,10 +37,15 @@ const SettingsDropdown = () => {
       {/* Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+        className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200  focus:ring-2 focus:ring-green-400 focus:ring-offset-transparent transition-colors duration-200"
       >
-        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
-          <User className="w-5 h-5 text-white" />
+        <div className="w-10 h-10 rounded-full  flex items-center justify-center">
+          {
+          currentUser.photoURL? 
+            <img className='  w-10 h-10 rounded-full  flex items-center justify-center ' src={currentUser.photoURL} alt="img" />
+          : 
+          <User className="w-5 h-5 text-black" /> 
+          }
         </div>
       </button>
 
@@ -69,7 +74,7 @@ const SettingsDropdown = () => {
                 <button
                   key={index}
                   onClick={() => handleItemClick(item)}
-                  className={`w-full px-4 py-3 text-left flex items-center space-x-3 hover:bg-gray-50 transition-colors duration-150
+                  className={`w-full px-4 py-3 text-left flex items-center space-x-3 hover:bg-gray-50 transition-colors duration-150 cursor-pointer
                     ${item.isLogout
                       ? 'text-red-600 hover:bg-red-50'
                       : 'text-gray-700'}`}
