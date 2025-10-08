@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       {path:"/hotels", Component: Hotels },
       {path:"/flights", Component: Flights },
       {path:"/bookings", Component: Bookings },
-      {path:"/dashbord", Component: DashBord },
+      {path:"/dashboard", Component: DashBord },
     ]
   },
 

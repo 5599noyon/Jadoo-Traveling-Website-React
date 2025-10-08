@@ -4,6 +4,7 @@ import {
   Bookmark, Heart, Clock, LogOut
 } from 'lucide-react';
 import { useAuth } from '../Hooks/useAuth';
+import { Link } from 'react-router';
 
 const SettingsDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,20 +12,20 @@ const SettingsDropdown = () => {
 
   // Menu Items with proper click handlers
   const menuItems = [
-    { icon: Settings, label: 'Settings & Privacy', onClick: () => console.log("Go to settings") },
+    { icon: Settings, label: 'Settings & Privacy', link: '/', onClick: () => console.log("Go to settings") },
     { icon: BarChart3, label: 'Professional Dashboard', link: '/dashboard' , onClick: () => console.log("Go to dashboard") },
-    { icon: Gift, label: 'Special Offers', onClick: () => console.log("Show offers") },
-    { icon: Calendar, label: 'Special Events', onClick: () => console.log("Show events") },
-    { icon: Car, label: 'Vehicle Finds', onClick: () => console.log("Show vehicles") },
-    { icon: Bookmark, label: 'Saved Booking', onClick: () => console.log("Show saved") },
-    { icon: Heart, label: 'Favorite Booking', onClick: () => console.log("Show favorites") },
-    { icon: Clock, label: 'Previous Booking', onClick: () => console.log("Show previous bookings") },
-    {
-      icon: LogOut,
-      label: 'Logout',
-      isLogout: true,
-      onClick: () => logout(), // Properly calls logout
-    },
+    { icon: Gift, label: 'Special Offers', link: '/', onClick: () => console.log("Show offers") },
+    { icon: Calendar, label: 'Special Events',link: '/', onClick: () => console.log("Show events") },
+    { icon: Car, label: 'Vehicle Finds', link: '/', onClick: () => console.log("Show vehicles") },
+    { icon: Bookmark, label: 'Saved Booking', link: '/', onClick: () => console.log("Show saved") },
+    { icon: Heart, label: 'Favorite Booking', link: '/', onClick: () => console.log("Show favorites") },
+    { icon: Clock, label: 'Previous Booking', link: '/', onClick: () => console.log("Show previous bookings") },
+    // {
+    //   icon: LogOut,
+    //   label: 'Logout',
+    //   isLogout: true,
+    //   onClick: () => logout(), // Properly calls logout
+    // },
   ];
 
   const handleItemClick = (item) => {
@@ -71,8 +72,9 @@ const SettingsDropdown = () => {
             {menuItems.map((item, index) => {
               const Icon = item.icon;
               return (
-                <button
+                <Link
                   key={index}
+                  to={item.link}
                   onClick={() => handleItemClick(item)}
                   className={`w-full px-4 py-3 text-left flex items-center space-x-3 hover:bg-gray-50 transition-colors duration-150 cursor-pointer
                     ${item.isLogout
@@ -80,10 +82,19 @@ const SettingsDropdown = () => {
                       : 'text-gray-700'}`}
                 >
                   <Icon className={`w-5 h-5 ${item.isLogout ? 'text-red-500' : 'text-gray-500'}`} />
+                  
                   <span className="font-medium">{item.label}</span>
-                </button>
+                </Link>
               );
             })}
+            <button
+                  onClick={logout}
+                  className={`w-full px-4 py-3 text-left flex items-center space-x-3 hover:bg-gray-50 transition-colors duration-150 cursor-pointer text-red-600 `}
+                >
+                  <LogOut className={`w-5 h-5 text-red-500`} />
+                  
+                  <span className="font-medium">{"Logout"}</span>
+                </button>
           </div>
 
           {/* Footer */}
